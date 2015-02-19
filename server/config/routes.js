@@ -2,5 +2,10 @@
 
 module.exports = [
   {method: 'get', path: '/{param*}', config: require('../routes/general/static')},
-  {method: 'get', path: '/', config: require('../routes/general/home')}
+  {method: 'get', path: '/', config: require('../routes/general/home')},
+  {method: 'get', path: '/contact', config: require('../routes/general/contact')},
+
+  {method: 'get', path: '/apartments', config: require('../routes/apartments/index')},
+
+  {method: 'get', path: '/renters', config: require('../routes/renters/index')}
 ];

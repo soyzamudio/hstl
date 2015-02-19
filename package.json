@@ -19,7 +19,7 @@
   },
   "version": "1.0.0",
   "scripts": {
-    "start": "MONGO_URL=mongodb://localhost/hapi-prototype PORT=3333 nodemon server/index.js",
+    "start": "MONGO_URL=mongodb://localhost/hstl PORT=3333 nodemon server/index.js",
     "clean": "rm -rf node_modules && rm -rf public && npm install && bower install && gulp build"
   },
   "license": "MIT",

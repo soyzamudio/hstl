@@ -2,11 +2,18 @@ doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
-    title Hapi Prototype
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Hstl.
+    link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.2/cosmo/bootstrap.min.css", rel="stylesheet")
+    link(rel='stylesheet', href='/vendor/font-awesome/css/font-awesome.css')
     link(rel='stylesheet', href='/style.css')
+    link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800,400', rel='stylesheet', type='text/css')
   body
-    h1 Hapi Prototype
     include ../partials/nav
-    block content
+    .container
+      block content
     script(src='/vendor/jquery/dist/jquery.js')
     script(src='/vendor/lodash/lodash.js')
+    script(src='/vendor/bootstrap/dist/js/bootstrap.min.js')
