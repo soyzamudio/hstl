@@ -9,7 +9,7 @@ var apartmentSchema = mongoose.Schema({
   sqft      : {type:Number},
   photo     : {type:String, required:true},
   createdAt : {type: Date, default: Date.now, required: true},
-  pets      : [{type: mongoose.Schema.ObjectId, ref: 'Renter'}]
+  renters   : [{type: mongoose.Schema.ObjectId, ref: 'Renter'}]
 });
 
 module.exports = mongoose.model('Apartment', apartmentSchema);
