@@ -8,6 +8,11 @@ module.exports = [
   {method: 'get', path: '/apartments', config: require('../routes/apartments/index')},
   {method: 'get', path: '/apartments/new', config: require('../routes/apartments/new')},
   {method: 'post', path: '/apartments/create', config: require('../routes/apartments/create')},
+  {method: 'get', path: '/apartments/{apartmentId}', config: require('../routes/apartments/show')},
 
-  {method: 'get', path: '/renters', config: require('../routes/renters/index')}
+  {method: 'get', path: '/renters', config: require('../routes/renters/index')},
+  {method: 'get', path: '/renters/new', config: require('../routes/renters/new')},
+  {method: 'post', path: '/renters/create', config: require('../routes/renters/create')},
+
+  {method: 'get', path: '/admin', config: require('../routes/admin/index')}
 ];

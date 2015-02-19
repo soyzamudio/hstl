@@ -7,7 +7,7 @@ var _ = require('lodash');
 module.exports = {
   handler: function(request, reply) {
     Renter.find(function(err, renters) {
-      reply.view('templates/renters/index', {path: '/renters', renters: renters, _:_});
+      reply.view('templates/renters/index', {path: '/renters', active: active, renters: renters, _:_});
     });
   }
 };

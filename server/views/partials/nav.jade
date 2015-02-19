@@ -9,7 +9,7 @@ nav.navbar.navbar-default.navbar-fixed-top
       a.navbar-brand(href='/'): i.fa.fa-bed
     #navbar.collapse.navbar-collapse.navbar-right
       ul.nav.navbar-nav
-        li: a(href='/') Home
-        li: a(href='/apartments') Search
-        li: a(href='/renters') Renters
-        li: a(href='/contact') Contact Us
+        li(class=active(path, '/')): a(href='/') Home
+        li(class=active(path, '/apartments')): a(href='/apartments') Search
+        li(class=active(path, '/renters')): a(href='/renters') Renters
+        li(class=active(path, '/contact')): a(href='/contact') Contact Us
