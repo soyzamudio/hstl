@@ -15,5 +15,6 @@ module.exports = [
   {method: 'get', path: '/renters/new', config: require('../routes/renters/new')},
   {method: 'post', path: '/renters/create', config: require('../routes/renters/create')},
 
-  {method: 'get', path: '/admin', config: require('../routes/admin/index')}
+  {method: 'get', path: '/admin', config: require('../routes/admin/index')},
+  {method: 'post', path: '/admin/{renterId}/evict', config: require('../routes/admin/evict')}
 ];

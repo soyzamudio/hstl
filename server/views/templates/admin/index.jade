@@ -65,7 +65,7 @@ block content
               th Is Renting
               th Edit
               th Evict
-              th Destroy
+              th Delete
           tbody
             each renter in renters
               tr
@@ -77,5 +77,9 @@ block content
                 else
                   td No
                 td: a.btn.btn-info.btn-sm(href='/renters/#{renter._id}/edit') Edit
-                td: a.btn.btn-default.btn-sm(href='/renters/#{renter._id}/evict') Evict
+                  if renter.hasRented
+                    form(method='post', action='/admin/#{renter._id}/evict')
+                      td: button.btn.btn-default.btn-sm Evict
+                  else
+                    td
                 td: a.btn.btn-danger.btn-sm(href='/renters/#{renter._id}/destroy') Delete
