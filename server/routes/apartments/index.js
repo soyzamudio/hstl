@@ -6,7 +6,7 @@ var _ = require('lodash');
 
 module.exports = {
   handler: function(request, reply) {
-    Apartment.find(function(err, apartments) {
+    Apartment.find({}, function(err, apartments) {
       reply.view('templates/apartments/index', {path: '/apartments', active: active, apartments: apartments, _:_});
     });
   }

@@ -1,3 +1,36 @@
 extends ../../layouts/master
 block content
-  h3 Show Apartment
+  .container-flui
+    section#room(style='background: url(#{apartment.photo}) no-repeat center -200px fixed')
+  section#info
+    .container
+      #data.col-md-5
+        .col-md-6.text-left
+          form.form-inline(method='post', action='/apartments/#{apartment._id}/rent')
+            select.form-control.input-sm(name='renterId')
+              each renter in renters
+                option(value=renter._id)= renter.name
+            button.btn.btn-info.btn-sm(type='submit') Rent!
+        .col-md-6.text-right
+          i.fa.fa-users
+          span &nbsp; #{apartment.renters.length}
+          i.fa.fa-bed
+          span &nbsp; #{apartment.bedrooms}
+      .col-md-2.text-center
+        .img-circle(style='background: url(#{apartment.photo}) no-repeat center center; background-size: cover')
+      .col-md-5
+        #data.col-md-12
+          i.fa.fa-arrows-alt
+          span &nbsp; #{apartment.sqft}sqft
+          i.fa.fa-money
+          span &nbsp; $#{apartment.rent}
+  if apartment.renters.length
+    section#renter
+      .container
+        .page-header
+          h1 Renters
+        .col-md-12
+          each renter in apartment.renters
+            .col-md-3
+              .img-circle(style='background: url(#{renter.photo}) no-repeat center center; background-size: cover')
+              h3= renter.name

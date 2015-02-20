@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 var apartmentSchema = mongoose.Schema({
   name          : {type:String, requried:true},
   bedrooms      : {type:Number, required:true},
-  bedroomsLeft  : {type:Number, required:true},
   rent          : {type:Number, required:true},
   sqft          : {type:Number},
   photo         : {type:String, required:true},

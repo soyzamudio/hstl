@@ -1,24 +1,26 @@
 extends ../../layouts/master
 block content
-  .row
-    #leftCol.col-md-2
-      //- a.btn.btn-default.btn-sm(href='/apartments/new') Add new
-      #sidebar(data-spy="affix", data-offset-top='-50')
-        h3.page-header: strong Filters
-        ul.nav.nav-stacked
-          li: input.form-control.input-sm(type='number', placeholder='Rent')
-          li: input.form-control.input-sm(type='number', placeholder='Rooms')
-        button.btn.btn-default.btn-sm Filter
-    .col-md-10
-      .col-md-12.page-header
-        .col-md-6: h5 Search Results
-        .col-md-6.text-right: h5= apartments.length + ' apartment(s) for rent'
-        h5
-      .col-md-12
-        each apartment in apartments
-          a(href='/apartments/#{apartment._id}')
-            .col-md-6
-              .outer
-                .inner(style='background: url(#{apartment.photo}) no-repeat center;')
-                  h3.rent= '$' + apartment.rent
-                  h4.beds= apartment.bedroomsLeft + ' rooms available'
+  .container
+    .row
+      #leftCol.col-md-2
+        //- a.btn.btn-default.btn-sm(href='/apartments/new') Add new
+        #sidebar(data-spy="affix", data-offset-top='-50')
+          h3.page-header: strong Filters
+          ul.nav.nav-stacked
+            li: input.form-control.input-sm(type='min', placeholder='Rent Min')
+            li: input.form-control.input-sm(type='max', placeholder='Rent Max')
+          button.btn.btn-default.btn-sm Filter
+      .col-md-10
+        .col-md-12.page-header
+          .col-md-6: h5 Search Results
+          .col-md-6.text-right: h5= apartments.length + ' apartment(s) for rent'
+          h5
+        .col-md-12
+          each apartment in apartments
+            if apartment.renters.length !== apartment.bedrooms
+              a(href='/apartments/#{apartment._id}')
+                .col-md-6
+                  .outer
+                    .inner(style='background: url(#{apartment.photo}) no-repeat center center;')
+                      h3.rent= '$' + apartment.rent
+                      h4.beds= apartment.bedrooms - apartment.renters.length + ' rooms available'

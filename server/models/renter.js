@@ -7,7 +7,8 @@ var renterSchema = mongoose.Schema({
   age       : {type:Number, required:true},
   gender    : {type:String, required:true},
   photo     : {type:String, required:true},
-  createdAt : {type: Date, default: Date.now, required: true}
+  createdAt : {type: Date, default: Date.now, required: true},
+  hasRented : {type: Boolean, default:false}
 });
 
 module.exports = mongoose.model('Renter', renterSchema);

@@ -1,7 +1,50 @@
 extends ../../layouts/master
 block content
-  h3 Admin
-  a.btn.btn-default(href='/apartments/new') Create Apartment
-  a.btn.btn-default(href='/renters/new') Create Renter
-  
-  
+  .container
+    .row
+      .page-header
+        a.btn.btn-default(href='/apartments/new'): i.fa.fa-plus &nbsp; Create Apartment
+        
+  .container
+    .row
+      .col-md-5
+        .page-header
+          h1 Revenue
+        h3= 'Current Revenue: $' + data.revenue
+        h3= 'Possible Revenue: $' + data.total
+      .col-md-4
+        .page-header
+          h1 Rooms
+        h3= 'Filled: ' + data.filled
+        h3= 'Vacant: ' + data.vacant
+        h3= 'Total Rooms: ' + data.totalRooms
+      .col-md-3
+        .page-header
+          h1 Apartments Left
+        h3= data.apartments
+        
+  .container
+    .row
+      .col-md-12.page-header 
+        h1 All Apartments
+      .col-md-12
+        table.table
+          thead
+            tr
+              th Apartment
+              th Bedrooms
+              th Rented
+              th Available
+              th Sqft
+              th Rent ($)
+              th Edit
+          tbody
+            each apartment in apartments
+              tr
+                th= apartment.name
+                td= apartment.bedrooms
+                td= apartment.renters.length
+                td= apartment.bedrooms - apartment.renters.length
+                td= apartment.sqft
+                td= '$' + apartment.rent
+                td: a.btn.btn-danger.btn-sm(href='/apartments/#{apartment._id}/edit') Edit

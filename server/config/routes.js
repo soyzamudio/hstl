@@ -9,6 +9,7 @@ module.exports = [
   {method: 'get', path: '/apartments/new', config: require('../routes/apartments/new')},
   {method: 'post', path: '/apartments/create', config: require('../routes/apartments/create')},
   {method: 'get', path: '/apartments/{apartmentId}', config: require('../routes/apartments/show')},
+  {method: 'post', path: '/apartments/{apartmentId}/rent', config: require('../routes/apartments/rent')},
 
   {method: 'get', path: '/renters', config: require('../routes/renters/index')},
   {method: 'get', path: '/renters/new', config: require('../routes/renters/new')},
