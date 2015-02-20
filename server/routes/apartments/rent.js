@@ -10,6 +10,7 @@ module.exports = {
         apartment.renters.push(renter._id);
         apartment.bedroomsLeft--;
         renter.hasRented = true;
+        renter.rental = apartment._id;
         apartment.save(function() {
           renter.save(function() {
             reply.redirect('/apartments/' + apartment._id);
