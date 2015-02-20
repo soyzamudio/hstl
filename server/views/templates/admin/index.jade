@@ -26,7 +26,7 @@ block content
   .container
     .row
       .col-md-12.page-header 
-        h1 All Apartments
+        h1 All Apartments (#{apartments.length})
       .col-md-12
         table.table
           thead
@@ -38,6 +38,7 @@ block content
               th Sqft
               th Rent ($)
               th Edit
+              th Delete
           tbody
             each apartment in apartments
               tr
@@ -47,4 +48,34 @@ block content
                 td= apartment.bedrooms - apartment.renters.length
                 td= apartment.sqft
                 td= '$' + apartment.rent
-                td: a.btn.btn-danger.btn-sm(href='/apartments/#{apartment._id}/edit') Edit
+                td: a.btn.btn-info.btn-sm(href='/apartments/#{apartment._id}/edit') Edit
+                td: a.btn.btn-danger.btn-sm(href='/apartments/#{apartment._id}/destroy') Delete
+                
+  .container
+    .row
+      .col-md-12.page-header 
+        h1 All Renters (#{renters.length})
+      .col-md-12
+        table.table
+          thead
+            tr
+              th Name
+              th Age
+              th Gender
+              th Is Renting
+              th Edit
+              th Evict
+              th Destroy
+          tbody
+            each renter in renters
+              tr
+                th= renter.name
+                td= renter.age
+                td.text-capitalize= renter.gender
+                if renter.hasRented
+                  td Yes
+                else
+                  td No
+                td: a.btn.btn-info.btn-sm(href='/renters/#{renter._id}/edit') Edit
+                td: a.btn.btn-default.btn-sm(href='/renters/#{renter._id}/evict') Evict
+                td: a.btn.btn-danger.btn-sm(href='/renters/#{renter._id}/destroy') Delete
