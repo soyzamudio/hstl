@@ -7,9 +7,11 @@ block content
         #sidebar(data-spy="affix", data-offset-top='-50')
           h3.page-header: strong Filters
           ul.nav.nav-stacked
-            li: input.form-control.input-sm(type='min', placeholder='Rent Min')
-            li: input.form-control.input-sm(type='max', placeholder='Rent Max')
-          button.btn.btn-default.btn-sm Filter
+            form(method='get', action='/apartments')
+              li: input.form-control.input-sm(type='text', name='min', placeholder='Rent Min')
+              li: input.form-control.input-sm(type='text', name='max', placeholder='Rent Max')
+              button.btn.btn-default.btn-sm: i.fa.fa-search
+              a.btn.btn-primary.btn-sm(href='/apartments'): i.fa.fa-refresh
       .col-md-10
         .col-md-12.page-header
           .col-md-6: h5 Search Results

@@ -3,3 +3,27 @@ block content
   .container
     .row.page-header
       a.btn.btn-default(href='/renters/new'): i.fa.fa-plus &nbsp; Create Renter
+      
+  .container
+    .row
+      .col-md-12.page-header 
+        h1 All Renters
+      .col-md-12
+        table.table
+          thead
+            tr
+              th Name
+              th Age
+              th Gender
+              th Renting?
+          tbody
+            each renter in renters
+              tr
+                th= renter.name
+                td= renter.age
+                td.text-capitalize= renter.gender
+                if renter.hasRented
+                  td Yes
+                else
+                  td No
+                    

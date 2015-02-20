@@ -8,11 +8,15 @@ block content
             h3 Find a family.
           #search.col-md-12
             .col-md-4
-            .col-md-4
-              .col-md-10
-                input.form-control(type='text', placeholder='Search for your new home...')
-              .col-md-2
-                button.btn.btn-primary: i.fa.fa-search
+            .col-md-4.text-center
+              form.form-inline(method='get', action='/apartments')
+                .input-group
+                  span.input-group-addon $
+                  input.form-control(type='text', name='min', placeholder='Min Amount of Rent...')
+                .input-group
+                  span.input-group-addon $
+                  input.form-control(type='text', name='max', placeholder='Max Amount of Rent...')
+                button.form-control.btn.btn-primary(type='submit'): i.fa.fa-search
             .col-md-4
           
           
