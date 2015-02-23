@@ -5,6 +5,9 @@ var Apartment = require('../../models/apartment');
 var _ = require('lodash');
 
 module.exports = {
+  auth: {
+    mode: 'try'
+  },
   handler: function(request, reply) {
 
     Object.keys(request.query).forEach(function(key) {
@@ -23,8 +26,6 @@ module.exports = {
       _.merge(request.query.rent, { $lte: request.query.max });
       delete request.query.max;
     }
-
-    console.log('query', request.query);
 
     Apartment.find(request.query, function(err, apartments) {
       reply.view('templates/apartments/index', {path: '/apartments', active: active, apartments: apartments, _:_});

@@ -17,12 +17,12 @@ block content
               th Gender
               th Renting?
           tbody
-            each renter in renters
+            each user in users
               tr
-                th= renter.name
-                td= renter.age
-                td.text-capitalize= renter.gender
-                if renter.hasRented
+                th= user.name
+                td= user.age
+                td.text-capitalize= use.gender
+                if renter.isRenting
                   td Yes
                 else
                   td No

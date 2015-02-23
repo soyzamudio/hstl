@@ -1,0 +1,14 @@
+extends ../../layouts/master
+block content
+  .container
+    .row
+      h1 Register
+  
+    form(method='post', action='/users/authentication')
+      .form-group
+        label(for='email')
+        input#email.form-control(type='email', name='email', placeholder='Enter email')
+      .form-group
+        label(for='password')
+        input#password.form-control(type='password', name='password', placeholder='Enter password')
+      button.btn.btn-default(type='submit') Log In 

@@ -1,0 +1,31 @@
+extends ../../layouts/master
+block content
+  .container
+    form.form-horizontal(method='post', action='/apartments/#{apartment._id}/update')
+      fieldset
+        legend Create new apartment
+        .form-group
+          label.col-md-1.control-label(for='name') Name
+          .col-md-11
+            input#name.form-control(type='text', name='name', placeholder='Enter an apartment name', value=apartment.name, autofocus='true')
+        .form-group
+          label.col-md-1.control-label(for='bedrooms') Bedrooms
+          .col-md-11
+            input#bedrooms.form-control(type='number', name='bedrooms', value=apartment.bedrooms, placeholder='Enter amount of bedrooms')
+        .form-group
+          label.col-md-1.control-label(for='rent') Rent
+          .col-md-11.input-group
+            span.input-group-addon $
+            input#rent.form-control(type='number', name='rent', value=apartment.rent, placeholder='Enter rent amount')
+            span.input-group-addon .00
+        .form-group
+          label.col-md-1.control-label(for='sqft') Sqft
+          .col-md-11
+            input#sqft.form-control(type='number', name='sqft', value=apartment.sqft, placeholder='Enter square feet')
+        .form-group
+          label.col-md-1.control-label(for='photo') Photo
+          .col-md-11
+            input#photo.form-control(type='url', name='photo', value=apartment.photo, placeholder='http://')
+        .form-group
+          .col-md-11.col-md-offset-1
+            button.btn.btn-default: i.fa.fa-bed &nbsp; Edit Apartment

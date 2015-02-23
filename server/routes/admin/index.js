@@ -2,13 +2,13 @@
 
 var active = require('../../views/helpers/active');
 var Apartment = require('../../models/apartment');
-var Renter = require('../../models/renter');
+var User = require('../../models/user');
 var _ = require('lodash');
 
 module.exports = {
   handler: function(request, reply) {
     Apartment.find(function(err, apartments) {
-      Renter.find(function(err, renters) {
+      User.find(function(err, users) {
         var data = { revenue: 0, totalRooms: 0, filled: 0, vacant: 0, total: 0, apartments: 0};
 
         apartments.forEach(function(a) {
@@ -19,7 +19,7 @@ module.exports = {
           data.total += a.bedrooms * a.rent;
           if (a.renters.length !== a.bedrooms) { data.apartments++; }
         });
-        reply.view('templates/admin/index', {path: '/admin', data: data, apartments: apartments, renters:renters, active:active, _:_});
+        reply.view('templates/admin/index', {path: '/admin', data: data, apartments: apartments, users:users, active:active, _:_});
       });
     });
   }

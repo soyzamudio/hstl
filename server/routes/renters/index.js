@@ -1,13 +1,13 @@
 'use strict';
 
 var active = require('../../views/helpers/active');
-var Renter = require('../../models/renter');
+var User = require('../../models/user');
 var _ = require('lodash');
 
 module.exports = {
   handler: function(request, reply) {
-    Renter.find(function(err, renters) {
-      reply.view('templates/renters/index', {path: '/renters', active: active, renters: renters, _:_});
+    User.find(function(err, users) {
+      reply.view('templates/renters/index', {path: '/renters', active: active, users: users, _:_});
     });
   }
 };

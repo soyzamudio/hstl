@@ -9,7 +9,12 @@ nav.navbar.navbar-default.navbar-fixed-top
       a.navbar-brand(href='/'): img(src='/logo.png')
     #navbar.collapse.navbar-collapse.navbar-right
       ul.nav.navbar-nav
-        li(class=active(path, '/')): a(href='/') Home
-        //- li(class=active(path, '/apartments')): a(href='/apartments') Search
-        li(class=active(path, '/renters')): a(href='/renters') Renters
-        li(class=active(path, '/contact')): a(href='/contact') Contact Us
+        li: a(href='/') Home
+        if email
+          form.navbar-form.navbar-left(method='post', action='/logout')
+            button.btn.btn-default Log Out
+        else
+          li: a(href='/register') Sign Up
+          li: a(href='/login') Log in
+        if admin
+          li: a(href='/admin') Admin        

@@ -7,6 +7,6 @@ module.exports = {
     mode: 'try'
   },
   handler: function(request, reply) {
-    reply.view('templates/general/home', {path: '/', active: active});
+    reply.view('templates/users/new', {path: '/register'});
   }
 };

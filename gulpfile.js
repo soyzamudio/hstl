@@ -4,15 +4,17 @@ var less = require('gulp-less');
 var lint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var copy = require('gulp-copy');
+var watch = require('gulp-watch');
 
 var paths = {
+  filesrc: ['./client/**/*', './server/**/*'],
   jadesrc: ['./client/**/*.jade'],
   lesssrc: ['./client/**/*.less'],
   codesrc: ['./client/**/*.js', './server/**/*.js'],
-  clientsrc: ['./client/**/*.js', './client/**/*.mp3', './client/**/*.jpg', './client/**/*.wav', './client/**/*.png', './client/**/*.ico'],
+  copysrc: ['./client/**/*.js', './client/**/*.mp3', './client/**/*.jpg', './client/**/*.wav', './client/**/*.png', './client/**/*.ico'],
   jadedst: './public',
   lessdst: './public',
-  clientdst: './public'
+  copydst: './public'
 };
 
 gulp.task('build', ['jade', 'less', 'lint', 'jscs', 'copy']);
@@ -48,12 +50,12 @@ gulp.task('jscs', function() {
 });
 
 gulp.task('copy', function() {
-  gulp.src(paths.clientsrc)
-    .pipe(copy(paths.clientdst, {prefix:1}));
+  gulp.src(paths.copysrc)
+    .pipe(copy(paths.copydst, {prefix:1}));
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.jadesrc, ['jade']);
-  gulp.watch(paths.lesssrc, ['less']);
-  gulp.watch(paths.codesrc, ['lint', 'jscs', 'copy']);
+  watch(paths.filesrc, function() {
+    gulp.start('build');
+  });
 });

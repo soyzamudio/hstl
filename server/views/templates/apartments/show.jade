@@ -6,11 +6,10 @@ block content
     .container
       #data.col-md-5
         .col-md-6.text-left
-          form.form-inline(method='post', action='/apartments/#{apartment._id}/rent')
-            select.form-control.input-sm(name='renterId')
-              each renter in renters
-                option(value=renter._id)= renter.name
-            button.btn.btn-info.btn-sm(type='submit') Rent!
+          if email
+            unless isRenting
+              form.form-group(method='post', action='/apartments/#{apartment._id}/rent')
+                button.form-control.btn.btn-info.btn-sm(type='submit') Rent!
         .col-md-6.text-right
           i.fa.fa-users
           span &nbsp; #{apartment.renters.length}
@@ -30,7 +29,7 @@ block content
         .page-header
           h1 Renters
         .col-md-12
-          each renter in apartment.renters
+          each user in apartment.renters
             .col-md-3
-              .img-circle(style='background: url(#{renter.photo}) no-repeat center center; background-size: cover')
-              h3= renter.name
+              .img-circle(style='background: url(#{user.photo}) no-repeat center center; background-size: cover')
+              h3= user.name

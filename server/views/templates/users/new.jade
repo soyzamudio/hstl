@@ -1,0 +1,20 @@
+extends ../../layouts/master
+block content
+  .container
+    .row
+      h1 Register
+    
+      form(method='post', action='/users/create')
+        .form-group
+          label(for='name')
+          input#name.form-control(type='text', name='name', placeholder='Enter full name', autofocus='true')
+        .form-group
+          label(for='email')
+          input#email.form-control(type='email', name='email', placeholder='Enter email')
+        .form-group
+          label(for='photo')
+          input#photo.form-control(type='url', name='photo', placeholder='Enter URL', value='http://')
+        .form-group
+          label(for='password')
+          input#password.form-control(type='password', name='password', placeholder='Enter password')
+        button.btn.btn-default(type='submit') Register

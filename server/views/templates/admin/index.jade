@@ -1,85 +1,90 @@
-extends ../../layouts/master
-block content
-  .container
-    .row
-      .page-header
-        a.btn.btn-default(href='/apartments/new'): i.fa.fa-plus &nbsp; Create Apartment
-        
-  .container
-    .row
-      .col-md-5
-        .page-header
-          h1 Revenue
-        h3= 'Current Revenue: $' + data.revenue
-        h3= 'Possible Revenue: $' + data.total
-      .col-md-4
-        .page-header
-          h1 Rooms
-        h3= 'Filled: ' + data.filled
-        h3= 'Vacant: ' + data.vacant
-        h3= 'Total Rooms: ' + data.totalRooms
-      .col-md-3
-        .page-header
-          h1 Apartments Left
-        h3= data.apartments
-        
-  .container
-    .row
-      .col-md-12.page-header 
-        h1 All Apartments (#{apartments.length})
-      .col-md-12
-        table.table
-          thead
-            tr
-              th Apartment
-              th Bedrooms
-              th Rented
-              th Available
-              th Sqft
-              th Rent ($)
-              th Edit
-              th Delete
-          tbody
-            each apartment in apartments
-              tr
-                th= apartment.name
-                td= apartment.bedrooms
-                td= apartment.renters.length
-                td= apartment.bedrooms - apartment.renters.length
-                td= apartment.sqft
-                td= '$' + apartment.rent
-                td: a.btn.btn-info.btn-sm(href='/apartments/#{apartment._id}/edit') Edit
-                td: a.btn.btn-danger.btn-sm(href='/apartments/#{apartment._id}/destroy') Delete
-                
-  .container
-    .row
-      .col-md-12.page-header 
-        h1 All Renters (#{renters.length})
-      .col-md-12
-        table.table
-          thead
-            tr
-              th Name
-              th Age
-              th Gender
-              th Is Renting
-              th Edit
-              th Evict
-              th Delete
-          tbody
-            each renter in renters
-              tr
-                th= renter.name
-                td= renter.age
-                td.text-capitalize= renter.gender
-                if renter.hasRented
-                  td Yes
-                else
-                  td No
-                td: a.btn.btn-info.btn-sm(href='/renters/#{renter._id}/edit') Edit
-                  if renter.hasRented
-                    form(method='post', action='/admin/#{renter._id}/evict')
-                      td: button.btn.btn-default.btn-sm Evict
-                  else
-                    td
-                td: a.btn.btn-danger.btn-sm(href='/renters/#{renter._id}/destroy') Delete
+if email
+  extends ../../layouts/master
+  block content
+    if !admin
+      .container
+        .row
+          .page-header
+            h3 You do not have permission to access this area.
+    else
+      .container
+        .row
+          .page-header
+            a.btn.btn-default(href='/apartments/new'): i.fa.fa-plus &nbsp; Create Apartment
+            
+      .container
+        .row
+          .col-md-5
+            .page-header
+              h1 Revenue
+            h3= 'Current Revenue: $' + data.revenue
+            h3= 'Possible Revenue: $' + data.total
+          .col-md-4
+            .page-header
+              h1 Rooms
+            h3= 'Filled: ' + data.filled
+            h3= 'Vacant: ' + data.vacant
+            h3= 'Total Rooms: ' + data.totalRooms
+          .col-md-3
+            .page-header
+              h1 Apartments Left
+            h3= data.apartments
+            
+      .container
+        .row
+          .col-md-12.page-header 
+            h1 All Apartments (#{apartments.length})
+          .col-md-12
+            table.table
+              thead
+                tr
+                  th Apartment
+                  th Bedrooms
+                  th Rented
+                  th Available
+                  th Sqft
+                  th Rent ($)
+                  th Edit
+                  th Delete
+              tbody
+                each apartment in apartments
+                  tr
+                    th= apartment.name
+                    td= apartment.bedrooms
+                    td= apartment.renters.length
+                    td= apartment.bedrooms - apartment.renters.length
+                    td= apartment.sqft
+                    td= '$' + apartment.rent
+                    td: a.btn.btn-info.btn-sm(href='/apartments/#{apartment._id}/edit') Edit
+                    td: a.btn.btn-danger.btn-sm(href='/apartments/#{apartment._id}/destroy') Delete
+                    
+      .container
+        .row
+          .col-md-12.page-header 
+            h1 All Users (#{users.length})
+          .col-md-12
+            table.table
+              thead
+                tr
+                  th Name
+                  th Email
+                  th Is Renting
+                  th Edit
+                  th Evict
+                  th Delete
+              tbody
+                each user in users
+                  tr
+                    th= user.name
+                    td= user.email
+                    if user.isRenting
+                      td Yes
+                    else
+                      td No
+                    td: a.btn.btn-info.btn-sm Edit
+                      if user.isRenting
+                        form(method='post', action='/admin/#{user._id}/evict')
+                          td: button.btn.btn-default.btn-sm Evict
+                      else
+                        td
+                    td: a.btn.btn-danger.btn-sm(href='/users/#{user._id}/destroy') Delete
